@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.wrap{
+		width: 250px;
+		height: 250px;
+		margin: 100px auto;
+		background-color: #A8A8A8;
+		border:10px solid #A8A8A8;
+		border-radius: 5px;
+		box-shadow: 1px 1px 1px #A8A8A8;
+	}
+	.result{
+		width: 250px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		background: #EEE685;
+		border-radius:5px 5px 0 0;
+		box-shadow: 1px 1px 1px #A8A8A8;
+		box-shadow: -0.5px -0.5px 0.5px 0.3px #FFF5EE inset;
+	}
+	.box{
+		width: 250px;
+		height: 200px;
+		background: #969696;
+		position: relative;
+		cursor: pointer;
+		border-radius: 0 0 5px 5px;
+		box-shadow: -0.5px -0.5px 0.5px 0.3px #FFF5EE inset;
+	}
+	.button{
+		width: 40px;
+		height: 40px;
+		margin: 5px;
+		background: white;
+		float: left;
+		border-radius: 10px;
+		text-align: center;
+		line-height: 40px;
+		font-size: 20px;
+	}
+	.big{
+		width: 90px;
+		height: 40px;
+	}
+	.spe{
+		width: 40px;
+		height: 90px;
+	}
+	.position{
+		position: relative;
+		left: 50px;
+		background-color: orange;
+	}
+	.spe2{
+		position:relative;
+		top: -50px;
+		line-height: 90px;
+	}
+	.orange{
+		background-color: orange;
+	}
+	.button:hover{
+		background-color: rgba(0,0,0,0.6);
+	}
+	</style>
+</head>
+	<div class="wrap">
+		<div class="result"></div>
+		<div class="box">
+			<div class="button big" >c</div>
+			<div class="button">1</div>
+			<div class="button">2</div>
+			<div class="button orange">+</div>
+			<div class="button">3</div>
+			<div class="button">4</div>
+			<div class="button">5</div>
+			<div class="button">6</div>
+			<div class="button orange">-</div>
+			<div class="button">7</div>
+			<div class="button">8</div>
+			<div class="button">9</div>
+			<div class="button position">×</div>
+			<div class="button big">0</div>
+			<div class="button">.</div>
+			<div class="button spe spe2">=</div>
+			<div class="button orange">÷</div>
+		</div>
+	</div>
+<body>
+	<script type="text/javascript">
+	var num1=0;
+	var num2='+';
+	var num3=0;
+	var x=null;
+	var arr=[];
+	var con=document.getElementsByClassName('result')[0];
+	for(var i=0;i<17;i++){
+		var but=document.getElementsByClassName('button')[i];
+		but.onclick=function(){
+			x=this.innerHTML;
+			main();
+		}
+	}
+	function main(){
+		if(!isNaN(x) || x==='.'){
+			// isNaN 如果是特殊的非数字(=)为ture
+			//如果是数字或者是小数点的情况
+			arr.push(x);
+			// push  在数组尾部添加元素
+			con.innerHTML=arr.join('');
+			// jion进行数组的拼接
+		}else if(x==='c'){
+			// 如果是清除
+			num1=0;
+			num2='+';
+			num3=0;
+			x=null;
+			arr=[];
+			con.innerHTML=num1;
+		}else{
+			// 如果是别的
+			num3=parseFloat(arr.join(''));
+			// num3储存之前数组里面的值
+			console.log(num3);
+			count();
+			con.innerHTML=num1;
+			arr=[];
+			num2=x;
+			
+		}
+	}
+	function count(){
+		if(num2==='+'){
+			num1+=num3;
+		}
+		if(num2==='-'){
+			num1-=num3;
+		}
+		if(num2==='×'){
+			num1*=num3;
+		}
+		if(num2==='÷'){
+			num1/=num3;
+		}
+	}
+
+
+	// var  arr = [1,2];
+	// alert(arr.push('a','b'));
+</script>
+</body>
+</html>
+
